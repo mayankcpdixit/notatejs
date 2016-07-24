@@ -2,7 +2,7 @@
 This is a lightweight javascript annotation library
 
 
-Check out the [live demo](http://run.plnkr.co/mtTv3acSdnMnJ6C0/).
+Check out the [live demo](https://mayankcpdixit.github.io/notatejs/).
 Right now it shows one notation at a time. 
 
 data stored in format: `{"start":13,"end":18,"content":"modo","timestamp":1469358419567}`
