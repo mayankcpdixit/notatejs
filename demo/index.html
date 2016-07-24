@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NotateJS demo</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+		.controls {
+			position: fixed;
+		    top: 0;
+		    display: block;
+		    padding: 4px;
+		    border-bottom: 1px dashed;
+		}
+		.controls button {
+			border: 0;
+    		border: 1px solid grey;
+		}
+		.allowed-area {
+			margin-top: 35px;
+		    position: absolute;
+		    width: 800px;
+		    background: #eee;
+		    height: 500px;
+		    overflow: auto;
+		}
+		.saved-data {
+		    position: absolute;
+		    left: 800px;
+		    top: 0;
+		    background: #ddd;
+		    width: 300px;
+		    height: 500px;
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		    padding: 20px;
+		    margin-top: 35px;
+		    box-sizing: border-box;
+		    white-space: initial;
+		    word-wrap: break-word;
+		}
+	</style>
+</head>
+<body>
+	<div id="allowed-area" class="note_details allowed-area">
+		<h1>Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum.</h1>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href='http://loripsum.net/' target='_blank'>Restatis igitur vos;</a> Scrupulum, inquam, abeunti; Nihil enim hoc differt. <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> </p>
+
+		<pre>
+		Et tamen vide, ne, si ego non intellegam quid Epicurus
+		loquatur, cum Graece, ut videor, luculenter sciam, sit
+		aliqua culpa eius, qui ita loquatur, ut non intellegatur.
+
+		Sed audiamus ipsum: Compensabatur, inquit, tamen cum his
+		omnibus animi laetitia, quam capiebam memoria rationum
+		inventorumque nostrorum.
+		</pre>
+
+
+		<ul>
+			<li>Sed quid attinet de rebus tam apertis plura requirere?</li>
+			<li>Haec para/doca illi, nos admirabilia dicamus.</li>
+		</ul>
+
+		<ol>
+			<li>Vide, quantum, inquam, fallare, Torquate.</li>
+			<li>Quare attende, quaeso.</li>
+			<li>Quod ea non occurrentia fingunt, vincunt Aristonem;</li>
+		</ol>
+
+		<blockquote cite='http://loripsum.net'>
+			In quibus hoc primum est in quo admirer, cur in gravissimis rebus non delectet eos sermo patrius, cum idem fabellas Latinas ad verbum e Graecis expressas non inviti legant.
+		</blockquote>
+
+		<dl>
+			<dt><dfn>Dicimus aliquem hilare vivere;</dfn></dt>
+			<dd>Claudii libidini, qui tum erat summo ne imperio, dederetur.</dd>
+			<dt><dfn>Quis istum dolorem timet?</dfn></dt>
+		</dl>
+
+
+		<p><i>Quis est tam dissimile homini.</i> <code>Inde igitur, inquit, ordiendum est.</code> Equidem e Cn. Nam ante Aristippus, et ille melius. Bonum integritas corporis: misera debilitas. <a href='http://loripsum.net/' target='_blank'>Sed ad bona praeterita redeamus.</a> </p>
+
+		<h2>Quo studio Aristophanem putamus aetatem in litteris duxisse?</h2>
+
+		<p><i>Primum Theophrasti, Strato, physicum se voluit;</i> Nam quid possumus facere melius? </p>
+	</div>
+	<div id="controls" class="controls">
+		<button id="mark-btn">Mark it!</button>
+		<button id="reset-btn">Reset HTML</button>
+		<button id="restore-btn">Restore annotation</button>
+	</div>
+	<pre id="saved-data" class="saved-data"></pre>
+
+	<script type="text/javascript" src="../src/notate.js"></script>
+	<script type="text/javascript">
+		document.onload = initLib();
+
+		function initLib() {
+			_notate = new Notate();
+			var allowedArea = document.getElementById("allowed-area");
+			allowedArea.addEventListener("mouseup", function() {
+				_notate.gatherSelectionInfo();
+			});
+
+			var buttons ={
+				mark: document.getElementById("mark-btn"),
+				reset: document.getElementById("reset-btn"),
+				restore: document.getElementById("restore-btn")
+			};
+
+			var originalHTML = allowedArea.innerHTML;
+			var annotationData;
+			buttons.mark.addEventListener("click", function() {
+				annotationData = _notate.markAnnotation().annotation;
+				document.getElementById("saved-data").innerHTML = JSON.stringify(annotationData);
+			});
+
+			buttons.restore.addEventListener("click", function() {
+				_notate.restoreAnnotation(annotationData);
+			});
+
+			buttons.reset.addEventListener("click", function() {
+				allowedArea.innerHTML = originalHTML;
+			});
+		}
+	</script>
+</body>
+</html>
