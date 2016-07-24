@@ -10,19 +10,29 @@
 			position: fixed;
 		    top: 0;
 		    display: block;
-		    padding: 4px;
+		    padding: 10px;
 		    border-bottom: 1px dashed;
+		}
+		.controls h3 {
+			margin: 0; 
+		    display: inline-block;
+		    vertical-align: middle;
 		}
 		.controls button {
 			border: 0;
     		border: 1px solid grey;
 		}
+		.controls button:hover {
+			background-color: lightgray;
+	    	border-color: black;
+		}
 		.allowed-area {
-			margin-top: 35px;
+			margin-top: 55px;
 		    position: absolute;
 		    width: 800px;
 		    background: #eee;
 		    height: 500px;
+		    padding: 10px;
 		    overflow: auto;
 		}
 		.saved-data {
@@ -35,7 +45,7 @@
 		    overflow-x: hidden;
 		    overflow-y: auto;
 		    padding: 20px;
-		    margin-top: 35px;
+		    margin-top: 55px;
 		    box-sizing: border-box;
 		    white-space: initial;
 		    word-wrap: break-word;
@@ -91,6 +101,7 @@
 		<button id="mark-btn">Mark it!</button>
 		<button id="reset-btn">Reset HTML</button>
 		<button id="restore-btn">Restore annotation</button>
+		<h3>Mark > Reset > Restore</h3>
 	</div>
 	<pre id="saved-data" class="saved-data"></pre>
 
