@@ -34,7 +34,7 @@
       var args = Array.prototype.slice.call(arguments);
       console.log.apply(console, args);
     }
-  };
+  }
 
   function getParentForClass(el, cls) {
     while ((el = el.parentElement) && !el.classList.contains(cls));
@@ -59,8 +59,8 @@
     return {
       start: start,
       end: start + range.toString().length
-    }
-  };
+    };
+  }
 
   /*
    *   Taken from:
@@ -126,8 +126,8 @@
     return {
       start: start,
       end: start + selectedTextRange.text.length
-    }
-  };
+    };
+  }
 
   /*
    *   Taken from:
@@ -148,7 +148,7 @@
     textRange.moveEnd("character", savedSel.end);
     textRange.moveStart("character", savedSel.start);
     textRange.select();
-  };
+  }
 
   var saveSelection, restoreSelection;
   if (window.getSelection && document.createRange) {
@@ -156,7 +156,7 @@
     restoreSelection = rsWindow;
   } else if (document.selection && document.body.createTextRange) {
     saveSelection = ssDoc;
-    restoreSelection = rsDoc
+    restoreSelection = rsDoc;
   }
 
   Notate.prototype = {
@@ -260,7 +260,8 @@
           nodesInRange = rangeContents.childNodes,
           nodesToWrap = [];
 
-        for (var i = 0; i < nodesInRange.length; i++) {
+        var i;
+        for (i = 0; i < nodesInRange.length; i++) {
           if (nodesInRange[i].nodeName.toLowerCase() === "#text") {
             nodesToWrap.push(nodesInRange[i]);
           } else {
@@ -270,10 +271,10 @@
               }
             });
           }
-        };
+        }
 
 
-        for (var i = 0; i < nodesToWrap.length; i++) {
+        for (i = 0; i < nodesToWrap.length; i++) {
           var child = nodesToWrap[i],
             wrap = document.createElement(WRAPPER_ELEM_TAG);
           wrap.setAttribute("style", WRAPPER_ELEM_STYLE);
@@ -332,6 +333,6 @@
 
       window.getSelection().removeAllRanges();
     }
-  }
+  };
   return Notate;
 });
